@@ -1,0 +1,726 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VOLTIA - Performance Reimagined</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Sora:wght@300;400;600;700&display=swap');
+
+    :root {
+      --night: #0b1218;
+      --night-2: #111c26;
+      --ink: #0f141a;
+      --paper: #f7fafc;
+      --steel: #dce5ed;
+      --accent: #ff6a00;
+      --accent-2: #00b7a8;
+      --glow: rgba(255, 106, 0, 0.35);
+      --radius-lg: 28px;
+      --radius-md: 18px;
+      --shadow: 0 20px 60px rgba(10, 18, 24, 0.18);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Sora", "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: var(--paper);
+      line-height: 1.6;
+    }
+
+    img, svg {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1180px, 92vw);
+      margin: 0 auto;
+    }
+
+    .btn {
+      padding: 12px 22px;
+      border-radius: 999px;
+      border: 1px solid transparent;
+      font-weight: 600;
+      font-size: 14px;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      color: #0b1218;
+      box-shadow: 0 10px 30px var(--glow);
+    }
+
+    .btn.primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn.ghost {
+      background: transparent;
+      color: #fff;
+      border-color: rgba(255, 255, 255, 0.35);
+    }
+
+    header.hero {
+      position: relative;
+      color: #fff;
+      background: linear-gradient(135deg, #081018, #152331 60%, #0e1b27);
+      overflow: hidden;
+    }
+
+    header.hero::before {
+      content: "";
+      position: absolute;
+      inset: -100px -200px auto;
+      height: 420px;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(0, 183, 168, 0.35), transparent 60%),
+        radial-gradient(circle at 70% 10%, rgba(255, 106, 0, 0.35), transparent 55%);
+      filter: blur(10px);
+    }
+
+    header.hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -40% -60% -40%;
+      height: 460px;
+      background: radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.06), transparent 70%);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 28px 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo {
+      font-family: "Bebas Neue", "Oswald", sans-serif;
+      letter-spacing: 2px;
+      font-size: 28px;
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      color: rgba(255, 255, 255, 0.75);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .nav-cta {
+      display: flex;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 40px;
+      align-items: center;
+      padding-bottom: 90px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 12px;
+      color: rgba(255, 255, 255, 0.65);
+    }
+
+    header.hero h1 {
+      font-family: "Bebas Neue", "Oswald", sans-serif;
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: 0.95;
+      margin: 16px 0 18px;
+      letter-spacing: 1px;
+    }
+
+    header.hero p {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 16px;
+      max-width: 520px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      margin: 26px 0 30px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      background: rgba(255, 255, 255, 0.08);
+      padding: 14px 18px;
+      border-radius: 14px;
+      min-width: 140px;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 20px;
+    }
+
+    .hero-card {
+      position: relative;
+      padding: 28px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero-card .badge {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: rgba(0, 183, 168, 0.18);
+      border: 1px solid rgba(0, 183, 168, 0.4);
+      color: #9ff3eb;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .speed-ring {
+      position: absolute;
+      left: -30px;
+      top: -30px;
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 1px dashed rgba(255, 255, 255, 0.35);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: spin 18s linear infinite;
+    }
+
+    .speed-ring span {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .hero-card .spec {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 16px;
+      font-size: 14px;
+      color: rgba(255, 255, 255, 0.75);
+    }
+
+    section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      font-family: "Bebas Neue", "Oswald", sans-serif;
+      font-size: 42px;
+      margin-bottom: 14px;
+    }
+
+    .section-sub {
+      color: #4b5966;
+      max-width: 620px;
+      margin-bottom: 36px;
+    }
+
+    .stats {
+      background: #f0f4f7;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .stats-card {
+      background: #fff;
+      border-radius: var(--radius-md);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .stats-card h3 {
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+
+    .models-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .model {
+      background: #fff;
+      border-radius: var(--radius-md);
+      padding: 24px;
+      border: 1px solid var(--steel);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .model::before {
+      content: "";
+      position: absolute;
+      inset: -60% 40% auto auto;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(0, 183, 168, 0.25), transparent 70%);
+    }
+
+    .model h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    .model ul {
+      list-style: none;
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      color: #55626e;
+      font-size: 14px;
+    }
+
+    .model .price {
+      font-size: 18px;
+      font-weight: 600;
+      margin-top: 18px;
+    }
+
+    .model .btn {
+      margin-top: 18px;
+    }
+
+    .tech-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px;
+      align-items: center;
+    }
+
+    .tech-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .tech-item {
+      background: #fff;
+      border-radius: 16px;
+      padding: 16px 18px;
+      border: 1px solid var(--steel);
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .tech-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      background: rgba(255, 106, 0, 0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .tech-visual {
+      background: linear-gradient(135deg, #0b1218, #15212d);
+      border-radius: var(--radius-lg);
+      padding: 24px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tech-visual::after {
+      content: "";
+      position: absolute;
+      inset: auto -40% -60% -40%;
+      height: 300px;
+      background: radial-gradient(circle at 50% 0%, rgba(0, 183, 168, 0.25), transparent 70%);
+    }
+
+    .tech-visual h3 {
+      font-size: 24px;
+      margin-bottom: 12px;
+    }
+
+    .strip {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+    }
+
+    .strip span {
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .cta {
+      background: linear-gradient(120deg, #ff6a00, #ff9a3c);
+      color: #0b1218;
+    }
+
+    .cta-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .cta form {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    input,
+    select {
+      padding: 12px 14px;
+      border-radius: 999px;
+      border: none;
+      min-width: 220px;
+      font-family: inherit;
+    }
+
+    footer {
+      background: #0b1218;
+      color: rgba(255, 255, 255, 0.7);
+      padding: 36px 0;
+    }
+
+    footer .container {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .anim-up {
+      animation: rise 0.9s ease both;
+    }
+
+    .float {
+      animation: float 6s ease-in-out infinite;
+    }
+
+    @keyframes rise {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes spin {
+      from {
+        transform: rotate(0deg);
+      }
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @media (max-width: 980px) {
+      .hero-grid,
+      .tech-grid,
+      .cta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .nav-links {
+        order: 3;
+        width: 100%;
+        justify-content: center;
+      }
+
+      header.hero {
+        padding-bottom: 40px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .stats-grid,
+      .models-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-stats {
+        gap: 12px;
+      }
+
+      .hero-card {
+        order: -1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <nav>
+        <div class="logo">VOLTIA</div>
+        <div class="nav-links">
+          <a href="#models">Models</a>
+          <a href="#tech">Technology</a>
+          <a href="#stats">Performance</a>
+          <a href="#drive">Test Drive</a>
+        </div>
+        <div class="nav-cta">
+          <a class="btn ghost" href="#drive">Build Yours</a>
+          <a class="btn primary" href="#drive">Reserve</a>
+        </div>
+      </nav>
+
+      <div class="hero-grid">
+        <div class="hero-copy anim-up">
+          <div class="eyebrow">2026 lineup</div>
+          <h1>Electric performance, crafted like a supercar.</h1>
+          <p>
+            Meet the VOLTIA series, a range of luxury performance EVs with sculpted
+            aerodynamics, instant torque, and a cockpit designed around the driver.
+          </p>
+          <div class="hero-actions">
+            <a class="btn primary" href="#drive">Book a test drive</a>
+            <a class="btn ghost" href="#models">Explore models</a>
+          </div>
+          <div class="hero-stats">
+            <div class="stat">
+              <strong>2.9s</strong>
+              0-60 mph
+            </div>
+            <div class="stat">
+              <strong>420 mi</strong>
+              max range
+            </div>
+            <div class="stat">
+              <strong>650 hp</strong>
+              dual motor
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card float">
+          <div class="badge">New 2026</div>
+          <div class="speed-ring"><span>Track mode</span></div>
+          <svg viewBox="0 0 620 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M60 150 L140 110 L270 95 L390 100 L490 125 L560 140" stroke="white" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M95 150 L525 150" stroke="white" stroke-width="6" stroke-linecap="round" />
+            <path d="M200 110 L260 80 L360 85 L420 110" stroke="white" stroke-width="4" stroke-linecap="round" />
+            <circle cx="180" cy="155" r="26" stroke="white" stroke-width="5" />
+            <circle cx="470" cy="155" r="26" stroke="white" stroke-width="5" />
+            <circle cx="180" cy="155" r="10" fill="white" />
+            <circle cx="470" cy="155" r="10" fill="white" />
+            <path d="M120 150 L150 135" stroke="white" stroke-width="4" stroke-linecap="round" />
+            <path d="M520 150 L490 135" stroke="white" stroke-width="4" stroke-linecap="round" />
+          </svg>
+          <div class="spec">
+            <span>Range 420 mi</span>
+            <span>Charge 18 min</span>
+            <span>AWD performance</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section id="stats" class="stats">
+    <div class="container">
+      <div class="section-title">Performance built for the long run.</div>
+      <div class="section-sub">From carbon-wrapped aerodynamics to a track-ready battery pack, every detail is built for speed, control, and comfort.</div>
+      <div class="stats-grid">
+        <div class="stats-card">
+          <h3>Adaptive torque control</h3>
+          <p>Instantly balances power across all four wheels to maximize grip on any surface.</p>
+        </div>
+        <div class="stats-card">
+          <h3>Ultra-fast charging</h3>
+          <p>Regain up to 180 miles in 10 minutes with 350 kW rapid charging.</p>
+        </div>
+        <div class="stats-card">
+          <h3>Driver-focused cockpit</h3>
+          <p>Panoramic HUD, customizable drive profiles, and an intelligent co-pilot.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="models">
+    <div class="container">
+      <div class="section-title">Choose your VOLTIA.</div>
+      <div class="section-sub">Three distinct silhouettes, one signature performance DNA.</div>
+      <div class="models-grid">
+        <div class="model">
+          <h3>VOLTIA S</h3>
+          <ul>
+            <li>390 mi range</li>
+            <li>540 hp</li>
+            <li>Glass canopy</li>
+          </ul>
+          <div class="price">From $68,900</div>
+          <a class="btn primary" href="#drive">Configure</a>
+        </div>
+        <div class="model">
+          <h3>VOLTIA GT</h3>
+          <ul>
+            <li>420 mi range</li>
+            <li>650 hp</li>
+            <li>Track pack</li>
+          </ul>
+          <div class="price">From $82,400</div>
+          <a class="btn primary" href="#drive">Configure</a>
+        </div>
+        <div class="model">
+          <h3>VOLTIA X</h3>
+          <ul>
+            <li>350 mi range</li>
+            <li>560 hp</li>
+            <li>All-terrain</li>
+          </ul>
+          <div class="price">From $75,600</div>
+          <a class="btn primary" href="#drive">Configure</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tech">
+    <div class="container">
+      <div class="section-title">Technology that anticipates the road.</div>
+      <div class="section-sub">A connected platform that learns your driving style and optimizes every drive.</div>
+      <div class="tech-grid">
+        <div class="tech-list">
+          <div class="tech-item">
+            <div class="tech-icon">01</div>
+            <div>
+              <strong>Predictive suspension</strong>
+              <p>Reads the road surface 500 times per second for a smooth, confident ride.</p>
+            </div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon">02</div>
+            <div>
+              <strong>Immersive audio</strong>
+              <p>24 speakers with active noise cancellation to keep the cabin serene.</p>
+            </div>
+          </div>
+          <div class="tech-item">
+            <div class="tech-icon">03</div>
+            <div>
+              <strong>Safe drive suite</strong>
+              <p>Advanced driver assist features with 360-degree awareness.</p>
+            </div>
+          </div>
+        </div>
+        <div class="tech-visual">
+          <h3>VOLTIA OS</h3>
+          <p>Personalized profiles, cloud-synced routes, and a smart assistant that keeps every journey on track.</p>
+          <div class="strip">
+            <span>biometric login</span>
+            <span>haptic controls</span>
+            <span>over-air updates</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="drive" class="cta">
+    <div class="container">
+      <div class="cta-grid">
+        <div>
+          <div class="section-title">Ready to feel the torque?</div>
+          <p>Book a private test drive or request a digital walk-through with a product specialist.</p>
+        </div>
+        <form>
+          <input type="text" placeholder="Full name" aria-label="Full name">
+          <input type="email" placeholder="Email" aria-label="Email">
+          <select aria-label="Preferred model">
+            <option>VOLTIA S</option>
+            <option>VOLTIA GT</option>
+            <option>VOLTIA X</option>
+          </select>
+          <button class="btn primary" type="submit">Schedule</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div>
+        <div class="logo">VOLTIA</div>
+        <p>Luxury electric vehicles crafted for performance and precision.</p>
+      </div>
+      <div>
+        <p>Showrooms: Los Angeles, Miami, Chicago, Seattle</p>
+        <p>Support: 24/7 concierge line</p>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

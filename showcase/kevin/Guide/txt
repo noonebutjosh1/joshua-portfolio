@@ -1,0 +1,77 @@
+<div class="tab-contents">
+                        <ul>
+                            <li><span>UI/UX</span><br>Designing Web/App interfaces</li>
+                            <li><span>Web Developments</span><br>Web app Development</li>
+                            <li><span>App Developments</span><br>Building Android/Ios apps</li>
+                        </ul>
+                    </div>
+
+                    <div class="tab-contents">
+                        <ul>
+                            <li><span>2021 - Current</span><br>UI/UX Design Trainer at ET</li>
+                            <li><span>2019 - 2021</span><br> Team Lead at StarApp LLC.</li>
+                            <li><span>2017 - 2019</span><br>UI/UX Design Executives at Coin Digital Ltd.</li>
+                            <li><span>2016 - 2019</span><br>Intership at ekart eCommerce</li>
+                        </ul>   
+                    </div>
+
+                    <div class="tab-contents">
+                        <ul>
+                            <li><span>2016</span><br>UI/UX Design Training at ET Institute</li>
+                            <li><span>2016</span><br>MBA from MIT Bangalore.</li>
+                            <li><span>2014</span><br>BBA from ISM BAngalore.</li>
+                        </ul>
+                    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    .tab-links{
+    margin-right: 50px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    position: relative;
+}
+
+.tab-links::after{
+    content: '';
+    width: 0;
+    height: 3px;
+    background: #ff004f;
+    position: absolute;
+    left: 0;
+    bottom: -8px;
+    transition: 0.5s;
+}
+
+.tab-links.active-link::after{
+    width: 50%;
+}
+
+.tab-contents ul li{
+    list-style: none;
+    margin: 10px 0;
+}
+
+.tab-contents ul li span{
+    color: #b54769;
+    font-size: 14px;
+}
+
+.tab-contents{
+    display: none;
+}

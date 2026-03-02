@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav>
+        <h2 class="logo">Brethren.</h2>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section id="home" class="hero">
+        <h1>Hello, I'm <span>Brethren</span></h1>
+        <p>A Web Developer who hates stress and makes clean digital experiences.</p>
+        <a class="btn" href="#projects">See My Work</a>
+    </section>
+
+    <section id="about" class="about">
+        <h2>About Me</h2>
+        <p>I’m a developer with a backend background turning into a frontend beast.</p>
+    </section>
+
+    <section id="projects" class="projects">
+        <h2>Projects</h2>
+        <div class="project-grid">
+            <div class="card">Project 1</div>
+            <div class="card">Project 2</div>
+            <div class="card">Project 3</div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <h2>Contact Me</h2>
+        <p>Email: youremail@example.com</p>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  color: #2f2f2f;
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #2196F3;
+  color: #fff;
+  padding: 1em;
+  text-align: center;
+}
+
+.intro {
+  text-align: center;
+  padding: 5em;
+}
+
+button {
+  background-color: #2196F3;
+  color: #fff;
+  border: none;
+  padding: 1em 2em;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Name | Frontend Developer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <nav>
+      <ul>
+        <li><a href="                            
+        <li><a href="#about">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Intro -->
+  <section class="intro">
+    <h1>Hi, I'm [Your Name]</h1>
+    <p>A junior frontend developer passionate about building clean, minimal interfaces.</p>
+    <button>View Projects</button>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <h2>My Projects</h2>
+    <!-- Project cards will go here -->
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <h2>About Me</h2>
+    <p>A bit about yourself and your skills...</p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; [Year] [Your Name]</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

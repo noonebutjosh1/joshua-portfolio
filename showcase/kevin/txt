@@ -1,0 +1,25 @@
+ <div class="portfolio-list">
+                <div>
+                    <img src="images/portfolio1.jpg">
+                    <h2>Project Title 1</h2>
+                    <p>Lorem ipsum dolor sit amet, consectur adipiscing elit.</p>
+                </div>
+
+                <div>
+                    <img src="images/portfolio2.jpg">
+                    <h2>Project Title 2</h2>
+                    <p>Lorem ipsum dolor sit amet, consectur adipiscing elit.</p>
+                </div>
+
+                <div>
+                    <img src="images/portfolio3.jpg">
+                    <h2>Project Title 3</h2>
+                    <p>Lorem ipsum dolor sit amet, consectur adipiscing elit.</p>
+                </div>
+
+                <div>
+                    <img src="images/portfolio4.jpg">
+                    <h2>Project Title 4</h2>
+                    <p>Lorem ipsum dolor sit amet, consectur adipiscing elit.</p>
+                </div>
+            </div>
