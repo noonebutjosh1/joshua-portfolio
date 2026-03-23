@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurelia Travel Co. | Case Study</title>
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../script.js" defer></script>
+</head>
+<body data-theme="light">
+  <div class="background-layer" aria-hidden="true"></div>
+  <div class="site-shell">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="../index.html" aria-label="Back to home">
+          <span class="brand-j">J</span><span>.O.S.H.U.A</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="../index.html">Home</a>
+          <a href="../projects.html" class="active">Projects</a>
+          <a href="../contact.html">Contact</a>
+        </nav>
+        <div class="topbar-actions">
+          <a class="btn small ghost" href="../projects.html">Back to Projects</a>
+          <button class="theme-toggle" type="button" data-theme-toggle>Dark mode</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page container">
+      <section class="section-block">
+        <p class="eyebrow reveal" data-delay="1">Local Demo (Django)</p>
+        <h1 class="page-title reveal" data-delay="2">Aurelia Travel Co.</h1>
+        <p class="muted reveal" data-delay="3">
+          A boutique travel website built with Django templates and routed views, featuring curated journeys,
+          a brand story page, and a server-rendered registration flow for trip enquiries.
+        </p>
+        <div class="hero-actions reveal" data-delay="4">
+          <a class="btn primary" href="../projects.html">Back to Projects</a>
+          <a class="btn ghost" href="#local-demo">Run Locally</a>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="card project-shot-aurelia reveal" data-delay="1">
+          <div class="aurelia-preview">
+            <span class="aurelia-preview__kicker">Django Travel Build</span>
+            <strong>Aurelia Travel Co.</strong>
+            <p>Designed around polished destination storytelling, trust-building content, and a simple registration path.</p>
+            <div class="aurelia-preview__meta">
+              <span>Homepage</span>
+              <span>About</span>
+              <span>Register</span>
+              <span>Django Views</span>
+              <span>Templates</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="card-grid three">
+          <article class="card reveal" data-delay="1">
+            <h3>Curated Homepage</h3>
+            <p>The landing page presents featured journeys, brand benefits, and travel statistics using Django-rendered content blocks.</p>
+          </article>
+          <article class="card reveal" data-delay="2">
+            <h3>About Storytelling</h3>
+            <p>An About page communicates the company principles and milestones to make the travel brand feel established and trustworthy.</p>
+          </article>
+          <article class="card reveal" data-delay="3">
+            <h3>Registration Flow</h3>
+            <p>The register page handles form submission through Django views and feeds back a submitted state without needing a separate frontend app.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="case-study-grid">
+          <article class="card case-study-panel reveal" data-delay="1">
+            <h3>Tech Stack</h3>
+            <div class="skill-chips">
+              <span class="skill-chip">Python</span>
+              <span class="skill-chip">Django</span>
+              <span class="skill-chip">HTML5</span>
+              <span class="skill-chip">CSS3</span>
+              <span class="skill-chip">SQLite</span>
+            </div>
+            <p class="case-study-note">
+              This project runs as a local Django app, so it is shown here as a case study instead of a GitHub Pages live preview.
+            </p>
+          </article>
+
+          <article class="card case-study-panel reveal" data-delay="2" id="local-demo">
+            <h3>Run Locally</h3>
+            <ol class="case-study-steps">
+              <li>Open `C:\Users\J.O.S.H.U.A\Desktop\django-tutorials\project5` in your terminal.</li>
+              <li>Install Python and Django if they are not already available on your machine.</li>
+              <li>Run `python manage.py runserver` from the project folder.</li>
+              <li>Visit `http://127.0.0.1:8000/` in the browser to view the app.</li>
+            </ol>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-row">
+        <span><strong>&copy; 2026 J.O.S.H.U.A.</strong> All rights reserved.</span>
+        <span>Lagos, Nigeria time: <strong data-lagos-time>Loading...</strong></span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

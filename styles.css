@@ -371,6 +371,10 @@ main {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
+.project-grid-fit {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
 .project-card {
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
@@ -481,6 +485,56 @@ main {
   border-radius: 999px;
   padding: 0.34rem 0.58rem;
   background: rgba(255, 255, 255, 0.06);
+  font-size: 0.74rem;
+}
+
+.project-shot-aurelia {
+  min-height: 220px;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.44), transparent 34%),
+    radial-gradient(circle at bottom right, rgba(255, 142, 110, 0.18), transparent 36%),
+    linear-gradient(145deg, #f6efe2, #ecf7f5 48%, #d9ecf1);
+  color: #17313c;
+  border-bottom-color: rgba(23, 49, 60, 0.08);
+}
+
+.aurelia-preview {
+  width: 100%;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.aurelia-preview__kicker {
+  color: #d1643c;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.aurelia-preview strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.8vw, 2.15rem);
+  line-height: 1.05;
+}
+
+.aurelia-preview p {
+  margin: 0;
+  color: rgba(23, 49, 60, 0.78);
+  font-size: 0.9rem;
+}
+
+.aurelia-preview__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.aurelia-preview__meta span {
+  border: 1px solid rgba(23, 49, 60, 0.12);
+  border-radius: 999px;
+  padding: 0.34rem 0.58rem;
+  background: rgba(255, 255, 255, 0.48);
   font-size: 0.74rem;
 }
 
