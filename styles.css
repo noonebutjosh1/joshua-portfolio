@@ -347,36 +347,6 @@ main {
   font-size: 0.86rem;
 }
 
-.profile-layout {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  gap: 1.2rem;
-}
-
-.profile-placeholder {
-  border-radius: var(--radius-lg);
-  border: 1px dashed color-mix(in oklab, var(--accent-electric) 50%, var(--border));
-  min-height: 300px;
-  display: grid;
-  place-items: center;
-  text-align: center;
-  font-weight: 700;
-  letter-spacing: 0.03em;
-  color: var(--text-soft);
-  background:
-    radial-gradient(circle at 20% 20%, var(--glow-1), transparent 55%),
-    var(--surface);
-}
-
-.profile-placeholder img {
-  width: 100%;
-  height: 100%;
-  min-height: 300px;
-  object-fit: cover;
-  display: block;
-  border-radius: inherit;
-}
-
 .kpi-row {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -711,17 +681,12 @@ main {
     justify-content: flex-end;
   }
 
-  .profile-layout {
-    grid-template-columns: 220px 1fr;
-  }
-
   .section-heading-row {
     align-items: flex-start;
   }
 }
 
 @media (max-width: 760px) {
-  .profile-layout,
   .kpi-row,
   .card-grid.three,
   .card-grid.four,
