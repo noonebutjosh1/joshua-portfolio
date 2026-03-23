@@ -412,6 +412,8 @@ main {
 }
 
 .project-grid-fit .project-shot {
+  aspect-ratio: auto;
+  min-height: 0;
   padding: 0.9rem;
   background:
     linear-gradient(135deg, color-mix(in oklab, var(--accent-electric) 12%, var(--surface)), color-mix(in oklab, var(--accent-cyan) 16%, var(--surface))),
@@ -419,10 +421,17 @@ main {
 }
 
 .project-grid-fit .project-shot img {
+  width: 100%;
+  height: auto;
+  max-height: none;
   object-fit: contain;
   border-radius: calc(var(--radius-sm) + 2px);
   background: color-mix(in oklab, var(--surface) 92%, transparent);
   box-shadow: 0 10px 24px rgba(8, 42, 92, 0.12);
+}
+
+.project-grid-fit .project-card:hover .project-shot img {
+  transform: none;
 }
 
 .project-card:hover .project-shot img {
