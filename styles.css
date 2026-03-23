@@ -411,6 +411,20 @@ main {
   transition: transform 300ms ease;
 }
 
+.project-grid-fit .project-shot {
+  padding: 0.9rem;
+  background:
+    linear-gradient(135deg, color-mix(in oklab, var(--accent-electric) 12%, var(--surface)), color-mix(in oklab, var(--accent-cyan) 16%, var(--surface))),
+    var(--surface);
+}
+
+.project-grid-fit .project-shot img {
+  object-fit: contain;
+  border-radius: calc(var(--radius-sm) + 2px);
+  background: color-mix(in oklab, var(--surface) 92%, transparent);
+  box-shadow: 0 10px 24px rgba(8, 42, 92, 0.12);
+}
+
 .project-card:hover .project-shot img {
   transform: scale(1.03);
 }
@@ -787,6 +801,10 @@ main {
 
   .project-links a {
     width: 100%;
+  }
+
+  .project-grid-fit .project-shot {
+    padding: 0.7rem;
   }
 
   .skill-chip,
