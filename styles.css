@@ -68,6 +68,11 @@ a {
   text-decoration: none;
 }
 
+img,
+svg {
+  max-width: 100%;
+}
+
 .background-layer {
   position: fixed;
   inset: 0;
@@ -218,12 +223,14 @@ main {
   align-items: end;
   justify-content: space-between;
   gap: 1rem;
+  flex-wrap: wrap;
   margin-bottom: 1.2rem;
 }
 
 .muted {
   margin: 0;
   color: var(--text-soft);
+  max-width: 42rem;
 }
 
 .hero {
@@ -465,6 +472,7 @@ main {
   margin-top: auto;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   gap: 0.75rem;
 }
 
@@ -550,6 +558,10 @@ main {
   gap: 0.75rem;
 }
 
+.contact-item > div {
+  min-width: 0;
+}
+
 .icon-badge {
   width: 2.25rem;
   height: 2.25rem;
@@ -577,6 +589,7 @@ main {
 .contact-item a {
   color: var(--text);
   font-weight: 600;
+  overflow-wrap: anywhere;
 }
 
 .contact-form {
@@ -677,6 +690,7 @@ main {
 
   .topbar-inner {
     flex-wrap: wrap;
+    align-items: flex-start;
     padding-block: 0.8rem;
   }
 
@@ -685,12 +699,24 @@ main {
     margin-left: 0;
     width: 100%;
     justify-content: flex-start;
-    overflow-x: auto;
+    flex-wrap: wrap;
+    overflow-x: visible;
+    row-gap: 0.45rem;
     padding-bottom: 0.12rem;
   }
 
   .topbar-actions {
     margin-left: auto;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+  }
+
+  .profile-layout {
+    grid-template-columns: 220px 1fr;
+  }
+
+  .section-heading-row {
+    align-items: flex-start;
   }
 }
 
@@ -703,8 +729,26 @@ main {
     grid-template-columns: 1fr;
   }
 
+  .container {
+    width: min(1120px, calc(100% - 1.5rem));
+  }
+
   .hero h1 {
     font-size: clamp(1.72rem, 8.5vw, 2.55rem);
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .topbar-inner {
+    gap: 0.8rem;
+  }
+
+  .main-nav a {
+    padding: 0.42rem 0.72rem;
+    font-size: 0.9rem;
   }
 
   .topbar-actions {
@@ -713,8 +757,76 @@ main {
     justify-content: flex-end;
   }
 
+  .topbar-actions .btn.small,
+  .topbar-actions .theme-toggle {
+    flex: 1 1 180px;
+    text-align: center;
+  }
+
+  .contact-item {
+    align-items: flex-start;
+  }
+
+  .timeline-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
   .footer-row {
     flex-direction: column;
     align-items: flex-start;
+  }
+}
+
+@media (max-width: 560px) {
+  .container {
+    width: min(1120px, calc(100% - 1rem));
+  }
+
+  .brand {
+    font-size: 1.12rem;
+  }
+
+  .eyebrow {
+    max-width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .card,
+  .project-body,
+  .contact-panel,
+  .form-panel,
+  .timeline-item,
+  .kpi {
+    padding: 0.95rem;
+  }
+
+  .main-nav {
+    gap: 0.4rem;
+  }
+
+  .main-nav a {
+    flex: 1 1 calc(50% - 0.4rem);
+    text-align: center;
+  }
+
+  .topbar-actions {
+    justify-content: stretch;
+  }
+
+  .topbar-actions .btn.small,
+  .topbar-actions .theme-toggle {
+    flex-basis: 100%;
+  }
+
+  .project-links a {
+    width: 100%;
+  }
+
+  .skill-chip,
+  .role-pill {
+    width: fit-content;
+    max-width: 100%;
   }
 }
