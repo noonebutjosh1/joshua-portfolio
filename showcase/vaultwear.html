@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vaultwear | Case Study</title>
+  <link rel="stylesheet" href="../styles.css">
+  <script src="../script.js" defer></script>
+</head>
+<body data-theme="dark">
+  <div class="background-layer" aria-hidden="true"></div>
+  <div class="site-shell">
+    <header class="topbar">
+      <div class="container topbar-inner">
+        <a class="brand" href="../index.html" aria-label="Back to home">
+          <span class="brand-j">J</span><span>.O.S.H.U.A</span>
+        </a>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="../index.html">Home</a>
+          <a href="../projects.html" class="active">Projects</a>
+          <a href="../contact.html">Contact</a>
+        </nav>
+        <div class="topbar-actions">
+          <a class="btn small ghost" href="../projects.html">Back to Projects</a>
+          <button class="theme-toggle" type="button" data-theme-toggle>Light mode</button>
+        </div>
+      </div>
+    </header>
+
+    <main class="page container">
+      <section class="section-block">
+        <p class="eyebrow reveal" data-delay="1">Local Demo (XAMPP)</p>
+        <h1 class="page-title reveal" data-delay="2">Vaultwear</h1>
+        <p class="lead reveal" data-delay="3">
+          Dark-mode streetwear ecommerce project built with PHP and MySQL, featuring a storefront,
+          product detail flow, session-based cart, checkout, and a protected admin dashboard for product and order management.
+        </p>
+        <div class="hero-actions reveal" data-delay="4">
+          <a class="btn primary" href="../projects.html">Back to Projects</a>
+          <a class="btn ghost" href="#local-demo">Run Locally</a>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="card project-shot-vaultwear reveal" data-delay="1">
+          <div class="vaultwear-preview">
+            <span class="vaultwear-preview__kicker">PHP Ecommerce Build</span>
+            <strong>Vaultwear</strong>
+            <p>Built for fast product discovery, smooth cart flow, secure checkout, and admin-side inventory updates.</p>
+            <div class="vaultwear-preview__meta">
+              <span>Storefront</span>
+              <span>Cart</span>
+              <span>Checkout</span>
+              <span>Admin Panel</span>
+              <span>PDO</span>
+              <span>Session Cart</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="card-grid three">
+          <article class="card reveal" data-delay="1">
+            <h3>Storefront</h3>
+            <p>Featured drops, product browsing, brand sections, and product detail pages with stock-aware actions.</p>
+          </article>
+          <article class="card reveal" data-delay="2">
+            <h3>Cart & Checkout</h3>
+            <p>Session-backed cart updates, quantity management, checkout validation, and order confirmation flow.</p>
+          </article>
+          <article class="card reveal" data-delay="3">
+            <h3>Admin Workflow</h3>
+            <p>Protected admin area for product uploads, inventory updates, and order management through a local dashboard.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="case-study-grid">
+          <article class="card case-study-panel reveal" data-delay="1">
+            <h3>Tech Stack</h3>
+            <div class="skill-chips">
+              <span class="skill-chip">PHP</span>
+              <span class="skill-chip">MySQL</span>
+              <span class="skill-chip">PDO</span>
+              <span class="skill-chip">JavaScript</span>
+              <span class="skill-chip">HTML5</span>
+              <span class="skill-chip">CSS3</span>
+              <span class="skill-chip">XAMPP</span>
+            </div>
+            <p class="case-study-note">
+              This project is designed for a local XAMPP environment, so it is presented here as a case study rather than a GitHub Pages live demo.
+            </p>
+          </article>
+
+          <article class="card case-study-panel reveal" data-delay="2" id="local-demo">
+            <h3>Run Locally</h3>
+            <ol class="case-study-steps">
+              <li>Place the project in `C:\xampp\htdocs\vaultwear`.</li>
+              <li>Start Apache and MySQL from XAMPP.</li>
+              <li>Create/import the `vaultwear` database using `database.sql`.</li>
+              <li>Open `http://localhost/Vaultwear/` in the browser.</li>
+            </ol>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-row">
+        <span><strong>&copy; 2026 J.O.S.H.U.A.</strong> All rights reserved.</span>
+        <span>Lagos, Nigeria time: <strong data-lagos-time>Loading...</strong></span>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

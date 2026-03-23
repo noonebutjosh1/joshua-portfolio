@@ -434,6 +434,91 @@ main {
   transform: none;
 }
 
+.project-shot-vaultwear {
+  min-height: 220px;
+  background:
+    radial-gradient(circle at top right, rgba(38, 212, 199, 0.18), transparent 36%),
+    radial-gradient(circle at bottom left, rgba(255, 107, 53, 0.22), transparent 34%),
+    linear-gradient(155deg, #07080d, #111724 58%, #171d2f);
+  color: #eef5ff;
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
+.vaultwear-preview {
+  width: 100%;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.vaultwear-preview__kicker {
+  color: #8cebe2;
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.vaultwear-preview strong {
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3vw, 2.25rem);
+  line-height: 1;
+}
+
+.vaultwear-preview p {
+  margin: 0;
+  color: rgba(238, 245, 255, 0.78);
+  font-size: 0.9rem;
+}
+
+.vaultwear-preview__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.vaultwear-preview__meta span {
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  padding: 0.34rem 0.58rem;
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 0.74rem;
+}
+
+.case-study-grid {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1.15fr 0.85fr;
+}
+
+.case-study-panel h3 {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-display);
+}
+
+.case-study-panel p {
+  margin: 0 0 0.8rem;
+  color: var(--text-soft);
+}
+
+.case-study-steps {
+  margin: 0;
+  padding-left: 1.15rem;
+  color: var(--text-soft);
+}
+
+.case-study-steps li {
+  margin-bottom: 0.55rem;
+}
+
+.case-study-note {
+  margin-top: 0.85rem;
+  padding: 0.85rem 0.95rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid color-mix(in oklab, var(--accent-electric) 24%, var(--border));
+  background: color-mix(in oklab, var(--accent-electric) 10%, var(--surface));
+  color: var(--text-soft);
+}
+
 .project-card:hover .project-shot img {
   transform: scale(1.03);
 }
@@ -681,6 +766,10 @@ main {
     grid-template-columns: 1fr;
   }
 
+  .case-study-grid {
+    grid-template-columns: 1fr;
+  }
+
   .topbar-inner {
     flex-wrap: wrap;
     align-items: flex-start;
@@ -814,6 +903,10 @@ main {
 
   .project-grid-fit .project-shot {
     padding: 0.7rem;
+  }
+
+  .project-shot-vaultwear {
+    min-height: 190px;
   }
 
   .skill-chip,
