@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vaultwear Preview</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Chakra+Petch:wght@400;500;600;700&display=swap");
+
+    :root {
+      --bg: #07080d;
+      --bg-soft: #10131d;
+      --panel: #131826;
+      --line: #2a3148;
+      --text: #f4f6ff;
+      --muted: #a7afc9;
+      --accent: #ff6b35;
+      --accent-2: #26d4c7;
+      --success: #3ce08d;
+      --radius: 16px;
+      --shadow: 0 18px 45px rgba(0, 0, 0, 0.42);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Chakra Petch", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 10% -5%, rgba(38, 212, 199, 0.15), transparent 28%),
+        radial-gradient(circle at 90% 10%, rgba(255, 107, 53, 0.16), transparent 35%),
+        var(--bg);
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(1180px, 92%);
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      backdrop-filter: blur(8px);
+      background: rgba(7, 8, 13, 0.83);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .header-row {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 2.35rem;
+      letter-spacing: 1px;
+    }
+
+    .brand img {
+      width: 38px;
+      height: 38px;
+      object-fit: contain;
+    }
+
+    .site-nav,
+    .header-actions,
+    .hero-actions,
+    .product-meta,
+    .footer-row {
+      display: flex;
+    }
+
+    .site-nav {
+      gap: 1.1rem;
+    }
+
+    .site-nav span {
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .header-actions {
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .admin-link,
+    .cart-pill,
+    .btn {
+      border-radius: 999px;
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .admin-link,
+    .cart-pill {
+      border: 1px solid var(--line);
+      padding: 0.4rem 0.8rem;
+      font-size: 0.92rem;
+    }
+
+    .admin-link {
+      background: linear-gradient(90deg, rgba(255, 107, 53, 0.28), rgba(255, 107, 53, 0.08));
+      border-color: rgba(255, 107, 53, 0.4);
+    }
+
+    .cart-pill {
+      gap: 0.5rem;
+    }
+
+    .cart-pill span {
+      min-width: 1.45rem;
+      text-align: center;
+      padding: 0.05rem 0.4rem;
+      border-radius: 999px;
+      background: var(--accent-2);
+      color: #011314;
+    }
+
+    .hero {
+      padding: 5rem 0;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(115deg, rgba(9, 10, 17, 0.95), rgba(7, 8, 13, 0.8)),
+        url("https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=1800&q=80") center/cover;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 1.4rem;
+      align-items: stretch;
+    }
+
+    .hero-copy,
+    .hero-card,
+    .product-card {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+
+    .hero-copy {
+      padding: 1.65rem;
+      background: rgba(13, 16, 26, 0.72);
+    }
+
+    .hero-kicker {
+      margin-bottom: 0.5rem;
+      color: var(--accent-2);
+      font-weight: 700;
+      font-size: 0.82rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .hero-copy h1 {
+      margin-bottom: 1rem;
+      font-family: "Bebas Neue", sans-serif;
+      font-size: 5.8rem;
+      line-height: 0.96;
+      letter-spacing: 1px;
+    }
+
+    .hero-copy p,
+    .hero-card p,
+    .section-head p,
+    .copyright {
+      color: var(--muted);
+    }
+
+    .hero-actions {
+      gap: 0.8rem;
+      margin-top: 1.3rem;
+    }
+
+    .btn {
+      padding: 0.7rem 1.15rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(90deg, var(--accent), #ff8d62);
+      color: #170a07;
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.03);
+      color: var(--text);
+    }
+
+    .hero-cards {
+      display: grid;
+      gap: 1rem;
+    }
+
+    .hero-card {
+      padding: 1rem;
+      background: rgba(13, 16, 26, 0.78);
+    }
+
+    .hero-card h3,
+    .section-head h2,
+    .site-footer h3,
+    .site-footer h4 {
+      margin-bottom: 0.45rem;
+      font-family: "Bebas Neue", sans-serif;
+      letter-spacing: 0.8px;
+    }
+
+    .hero-card h3 {
+      font-size: 1.7rem;
+    }
+
+    .hero-card a {
+      color: var(--accent-2);
+      font-weight: 700;
+    }
+
+    .hero-card--admin {
+      border-color: rgba(255, 107, 53, 0.4);
+    }
+
+    .section-block {
+      padding: 3.2rem 0 4.4rem;
+    }
+
+    .section-head {
+      margin-bottom: 1.3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1rem;
+    }
+
+    .section-head h2 {
+      font-size: 3rem;
+      line-height: 1;
+    }
+
+    .section-head a {
+      color: var(--accent-2);
+      font-weight: 700;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .product-card {
+      background: linear-gradient(180deg, var(--panel), #0f1421);
+    }
+
+    .product-media {
+      aspect-ratio: 4 / 4.8;
+      overflow: hidden;
+    }
+
+    .product-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-body {
+      padding: 0.9rem;
+    }
+
+    .product-category {
+      margin-bottom: 0.3rem;
+      color: var(--accent-2);
+      font-size: 0.74rem;
+      font-weight: 700;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    .product-body h3 {
+      margin-bottom: 0.65rem;
+      font-size: 1.05rem;
+      line-height: 1.2;
+    }
+
+    .product-meta {
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.6rem;
+      margin-bottom: 0.7rem;
+      font-weight: 700;
+    }
+
+    .in-stock {
+      color: var(--success);
+    }
+
+    .product-actions {
+      width: 100%;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: rgba(255, 107, 53, 0.16);
+      color: #ffd1c1;
+      padding: 0.58rem 0.8rem;
+      text-align: center;
+      font-weight: 700;
+    }
+
+    .site-footer {
+      margin-top: 1rem;
+      padding: 2rem 0 1rem;
+      border-top: 1px solid var(--line);
+      background: #070911;
+    }
+
+    .footer-row {
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .site-footer p,
+    .site-footer a {
+      color: var(--muted);
+    }
+
+    .site-footer a {
+      display: block;
+      margin-bottom: 0.32rem;
+    }
+
+    .copyright {
+      margin-top: 1.2rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-row">
+      <a class="brand" href="#">
+        <img src="../assets/images/vaultwear/vaultwear-logo.svg" alt="" aria-hidden="true">
+        <span>Vaultwear</span>
+      </a>
+      <nav class="site-nav" aria-label="Preview navigation">
+        <span>Home</span>
+        <span>Shop</span>
+        <span>Cart</span>
+      </nav>
+      <div class="header-actions">
+        <span class="admin-link">Admin</span>
+        <span class="cart-pill">Cart <span>3</span></span>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <p class="hero-kicker">Welcome to Vaultwear</p>
+          <h1>Own The Night. Wear The Drop.</h1>
+          <p>
+            Vaultwear is your dark-mode streetwear marketplace, built for fast product discovery,
+            smooth checkout, and a clean admin workflow behind the scenes.
+          </p>
+          <div class="hero-actions">
+            <span class="btn btn-primary">Start Shopping</span>
+            <span class="btn btn-secondary">Admin Access</span>
+          </div>
+        </div>
+        <div class="hero-cards">
+          <article class="hero-card">
+            <h3>For Shoppers</h3>
+            <p>Browse drops, view full product details, and manage your cart with session persistence.</p>
+            <a href="#">Go to shop</a>
+          </article>
+          <article class="hero-card hero-card--admin">
+            <h3>For Admin</h3>
+            <p>Use the protected control panel to login, upload products, update inventory, and manage orders.</p>
+            <a href="#">Open admin panel</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-block">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <h2>Featured Drops</h2>
+            <p>Streetwear essentials pulled from the live local build.</p>
+          </div>
+          <a href="#">View all products</a>
+        </div>
+
+        <div class="product-grid">
+          <article class="product-card">
+            <div class="product-media">
+              <img src="../assets/images/vaultwear/hellstar-eclipse-hoodie.jpg" alt="Hellstar Eclipse Hoodie">
+            </div>
+            <div class="product-body">
+              <p class="product-category">Hoodies</p>
+              <h3>Hellstar Eclipse Hoodie</h3>
+              <div class="product-meta">
+                <span>$92.00</span>
+                <span class="in-stock">In Stock</span>
+              </div>
+              <div class="product-actions">Add to Cart</div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-media">
+              <img src="../assets/images/vaultwear/ashluxe-core-tee.jpg" alt="Ashluxe Core Tee">
+            </div>
+            <div class="product-body">
+              <p class="product-category">T-Shirts</p>
+              <h3>Ashluxe Core Tee</h3>
+              <div class="product-meta">
+                <span>$46.00</span>
+                <span class="in-stock">In Stock</span>
+              </div>
+              <div class="product-actions">Add to Cart</div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-media">
+              <img src="../assets/images/vaultwear/nike-nightshift-cargo.jpg" alt="Nike Nightshift Cargo">
+            </div>
+            <div class="product-body">
+              <p class="product-category">Bottoms</p>
+              <h3>Nike Nightshift Cargo</h3>
+              <div class="product-meta">
+                <span>$78.00</span>
+                <span class="in-stock">In Stock</span>
+              </div>
+              <div class="product-actions">Add to Cart</div>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <div class="product-media">
+              <img src="../assets/images/vaultwear/pith-obsidian-jacket.jpg" alt="Pith Obsidian Jacket">
+            </div>
+            <div class="product-body">
+              <p class="product-category">Outerwear</p>
+              <h3>Pith Obsidian Jacket</h3>
+              <div class="product-meta">
+                <span>$120.00</span>
+                <span class="in-stock">In Stock</span>
+              </div>
+              <div class="product-actions">Add to Cart</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-row">
+      <div>
+        <h3>Vaultwear</h3>
+        <p>Dark-styled streetwear ecommerce for modern drops and sharp admin control.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="#">Shop All</a>
+        <a href="#">Your Cart</a>
+      </div>
+      <div>
+        <h4>Admin</h4>
+        <a href="#">Admin Login</a>
+        <a href="#">Dashboard</a>
+      </div>
+    </div>
+    <p class="copyright">&copy; 2026 Vaultwear. All rights reserved.</p>
+  </footer>
+</body>
+</html>

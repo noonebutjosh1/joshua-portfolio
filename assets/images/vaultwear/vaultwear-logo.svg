@@ -1,0 +1,21 @@
+<svg width="520" height="140" viewBox="0 0 520 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="vaultGradient" x1="20" y1="12" x2="112" y2="128" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D95B2F"/>
+      <stop offset="1" stop-color="#2E8A78"/>
+    </linearGradient>
+    <linearGradient id="typeGradient" x1="150" y1="30" x2="450" y2="100" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1F2530"/>
+      <stop offset="1" stop-color="#2A3446"/>
+    </linearGradient>
+  </defs>
+
+  <g>
+    <path d="M66 8L116 28V64C116 97 94 123 66 136C38 123 16 97 16 64V28L66 8Z" fill="url(#vaultGradient)"/>
+    <path d="M66 21L104 36V64C104 90 88 111 66 123C44 111 28 90 28 64V36L66 21Z" fill="rgba(255,255,255,0.15)"/>
+    <path d="M36 42L50 92H60L66 72L72 92H82L96 42H84L76 75L69 54H63L56 75L48 42H36Z" fill="white"/>
+  </g>
+
+  <text x="146" y="70" fill="url(#typeGradient)" font-family="'Arial Black', 'Segoe UI', sans-serif" font-size="54" letter-spacing="2">VAULTWEAR</text>
+  <text x="148" y="103" fill="#5D6270" font-family="'Segoe UI', sans-serif" font-size="16" letter-spacing="7">STREET ESSENTIALS</text>
+</svg>
