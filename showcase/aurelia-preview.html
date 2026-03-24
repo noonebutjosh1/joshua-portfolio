@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aurelia Travel Co. Preview</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Work+Sans:wght@300;400;500;600&display=swap");
+
+    :root {
+      --ink: #1c2b2b;
+      --ink-soft: #3c4f4f;
+      --sea: #2f6f6d;
+      --sea-deep: #184a4a;
+      --coral: #e07a5f;
+      --sand: #f6f1ea;
+      --mist: #eef3f1;
+      --white: #ffffff;
+      --shadow: 0 24px 50px rgba(20, 45, 45, 0.12);
+      --radius: 26px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Work Sans", "Helvetica Neue", Arial, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f8f3ec 0%, #f2ebe2 45%, #f8f5ef 100%);
+    }
+
+    .page {
+      min-height: 100vh;
+      padding: 28px 72px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 48px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .page::before,
+    .page::after {
+      content: "";
+      position: absolute;
+      width: 420px;
+      height: 420px;
+      border-radius: 50%;
+      opacity: 0.35;
+      z-index: 0;
+    }
+
+    .page::before {
+      top: -120px;
+      right: -80px;
+      background: radial-gradient(circle, rgba(224, 122, 95, 0.55) 0%, rgba(224, 122, 95, 0) 70%);
+    }
+
+    .page::after {
+      bottom: -160px;
+      left: -120px;
+      background: radial-gradient(circle, rgba(47, 111, 109, 0.35) 0%, rgba(47, 111, 109, 0) 70%);
+    }
+
+    .site-header,
+    .site-main,
+    .site-footer {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .site-header,
+    .site-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-mark {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: var(--sea);
+      color: var(--white);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 24px;
+      font-weight: 600;
+    }
+
+    .logo-title {
+      margin: 0;
+      font: 600 20px/1 "Cormorant Garamond", serif;
+    }
+
+    .logo-subtitle {
+      margin: 0;
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .site-nav {
+      display: flex;
+      gap: 20px;
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    .site-nav span {
+      font-weight: 500;
+    }
+
+    .btn {
+      border-radius: 999px;
+      padding: 12px 22px;
+      font-size: 14px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
+    .btn.small {
+      padding: 10px 18px;
+    }
+
+    .btn.primary {
+      background: var(--sea);
+      color: var(--white);
+      box-shadow: 0 18px 30px rgba(47, 111, 109, 0.25);
+    }
+
+    .btn.ghost {
+      border: 1px solid rgba(28, 43, 43, 0.2);
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.64);
+    }
+
+    .site-main {
+      display: flex;
+      flex-direction: column;
+      gap: 56px;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 48px;
+      align-items: center;
+    }
+
+    .pill {
+      display: inline-flex;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: rgba(47, 111, 109, 0.12);
+      color: var(--sea-deep);
+      font-size: 12px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    .hero-copy h1 {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 44px;
+      margin: 16px 0 12px;
+    }
+
+    .hero-copy p,
+    .section-heading p,
+    .card p,
+    .journey-card p,
+    .card-note,
+    .cta p,
+    .footer-links p {
+      color: var(--ink-soft);
+      line-height: 1.6;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 16px;
+      margin: 24px 0 30px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .stat {
+      background: var(--white);
+      padding: 18px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .stat-number {
+      font-size: 22px;
+      font-weight: 600;
+      color: var(--sea-deep);
+    }
+
+    .stat-label {
+      display: block;
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--ink-soft);
+    }
+
+    .hero-card,
+    .card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 28px;
+    }
+
+    .card-title,
+    .eyebrow,
+    .journey-tag {
+      font-size: 12px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .card-title,
+    .eyebrow {
+      color: var(--ink-soft);
+    }
+
+    .hero-card h3,
+    .section-heading h2,
+    .cta h2 {
+      font-family: "Cormorant Garamond", serif;
+    }
+
+    .hero-card h3 {
+      font-size: 26px;
+      margin: 0 0 20px;
+    }
+
+    .itinerary {
+      display: grid;
+      gap: 16px;
+    }
+
+    .itinerary-day {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--sea-deep);
+    }
+
+    .card-note {
+      margin-top: 20px;
+      padding: 14px 18px;
+      background: var(--mist);
+      border-radius: 16px;
+      font-size: 14px;
+    }
+
+    .section {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .section.muted {
+      padding: 32px;
+      border-radius: var(--radius);
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: var(--shadow);
+    }
+
+    .section-heading h2 {
+      margin: 10px 0 12px;
+      font-size: 32px;
+    }
+
+    .card-grid,
+    .journey-grid {
+      display: grid;
+      gap: 20px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .card {
+      padding: 22px;
+      border-radius: 22px;
+    }
+
+    .card h3,
+    .journey-card h3 {
+      margin: 0 0 10px;
+    }
+
+    .journey-card {
+      padding: 24px;
+      border-radius: 24px;
+      background: linear-gradient(145deg, rgba(244, 241, 234, 0.9), rgba(255, 255, 255, 0.95));
+      border: 1px solid rgba(28, 43, 43, 0.08);
+    }
+
+    .journey-tag {
+      color: var(--coral);
+    }
+
+    .text-link {
+      display: inline-flex;
+      margin-top: 12px;
+      color: var(--sea);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .cta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 32px;
+      border-radius: var(--radius);
+      background: linear-gradient(120deg, rgba(47, 111, 109, 0.12), rgba(224, 122, 95, 0.12));
+    }
+
+    .cta h2 {
+      margin: 0 0 8px;
+    }
+
+    .site-footer {
+      padding-top: 20px;
+      border-top: 1px solid rgba(28, 43, 43, 0.1);
+      color: var(--ink-soft);
+      font-size: 14px;
+    }
+
+    .footer-title {
+      margin: 0 0 6px;
+      color: var(--ink);
+      font: 600 18px/1 "Cormorant Garamond", serif;
+    }
+
+    .footer-subtitle,
+    .footer-links p {
+      margin: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="site-header">
+      <div class="logo">
+        <span class="logo-mark">A</span>
+        <div>
+          <p class="logo-title">Aurelia Travel Co.</p>
+          <p class="logo-subtitle">Boutique travel agency</p>
+        </div>
+      </div>
+      <nav class="site-nav" aria-label="Preview navigation">
+        <span>Home</span>
+        <span>About</span>
+        <span>Registration</span>
+      </nav>
+      <span class="btn small ghost">Start planning</span>
+    </header>
+
+    <main class="site-main">
+      <section class="hero">
+        <div class="hero-copy">
+          <span class="pill">Boutique Travel Agency</span>
+          <h1>Journeys that feel personal, curated, and unhurried.</h1>
+          <p>
+            Aurelia crafts bespoke escapes with a focus on quiet luxury, thoughtful pacing, and local experts who
+            bring each destination to life.
+          </p>
+          <div class="hero-actions">
+            <span class="btn primary">Start planning</span>
+            <span class="btn ghost">Our story</span>
+          </div>
+          <div class="stats">
+            <div class="stat">
+              <span class="stat-number">120+</span>
+              <span class="stat-label">Journeys planned in 2025</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">28</span>
+              <span class="stat-label">Countries curated</span>
+            </div>
+            <div class="stat">
+              <span class="stat-number">98%</span>
+              <span class="stat-label">Client return rate</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-card">
+          <p class="card-title">Sample itinerary</p>
+          <h3>Coastal Portugal in 6 days</h3>
+          <div class="itinerary">
+            <div>
+              <span class="itinerary-day">Day 1</span>
+              <p>Arrival in Lisbon, riverside sunset tasting.</p>
+            </div>
+            <div>
+              <span class="itinerary-day">Day 3</span>
+              <p>Sintra gardens, private driver, slow lunch.</p>
+            </div>
+            <div>
+              <span class="itinerary-day">Day 5</span>
+              <p>Comporta dunes, boutique stay, ocean dinner.</p>
+            </div>
+          </div>
+          <div class="card-note">
+            Perfect for couples who love design hotels and hidden coastline.
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-heading">
+          <span class="eyebrow">Why Aurelia</span>
+          <h2>Elegant planning, seamless travel.</h2>
+          <p>We combine refined logistics with meaningful local connections, so you can focus on the experience.</p>
+        </div>
+        <div class="card-grid">
+          <div class="card">
+            <h3>Tailored itineraries</h3>
+            <p>Every route is built around your pace, tastes, and preferred level of adventure.</p>
+          </div>
+          <div class="card">
+            <h3>Trusted partners</h3>
+            <p>We work with boutique hotels, expert guides, and quiet local favorites.</p>
+          </div>
+          <div class="card">
+            <h3>Quiet luxury</h3>
+            <p>Thoughtful details, seamless transfers, and room to breathe in each journey.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section muted">
+        <div class="section-heading">
+          <span class="eyebrow">Signature journeys</span>
+          <h2>Destinations with depth.</h2>
+          <p>Each itinerary balances iconic moments with quieter, softer scenes.</p>
+        </div>
+        <div class="journey-grid">
+          <div class="journey-card">
+            <span class="journey-tag">Greece</span>
+            <h3>Aegean Sun Escape</h3>
+            <p>Private sailing, cliffside suites, and slow island mornings curated end to end.</p>
+            <span class="text-link">Request this journey</span>
+          </div>
+          <div class="journey-card">
+            <span class="journey-tag">Japan</span>
+            <h3>Kyoto &amp; The Inland Sea</h3>
+            <p>Tea ceremonies, ryokan stays, and artful rail connections with a local guide.</p>
+            <span class="text-link">Request this journey</span>
+          </div>
+          <div class="journey-card">
+            <span class="journey-tag">Morocco</span>
+            <h3>Sahara to the Souks</h3>
+            <p>Desert camps under the stars, atelier visits, and rooftop dinners in the medina.</p>
+            <span class="text-link">Request this journey</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="cta">
+        <div>
+          <h2>Ready to design your next escape?</h2>
+          <p>Tell us where you want to go, and we will craft the details within 48 hours.</p>
+        </div>
+        <span class="btn primary">Start planning</span>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <p class="footer-title">Aurelia Travel Co.</p>
+        <p class="footer-subtitle">Design-led journeys for travelers who savor the details.</p>
+      </div>
+      <div class="footer-links">
+        <p>+234 803 555 0198</p>
+        <p>hello@aureliatravel.com</p>
+        <p>Victoria Island, Lagos</p>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>
