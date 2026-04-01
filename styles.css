@@ -20,6 +20,9 @@
   --radius-lg: 24px;
   --radius-md: 16px;
   --radius-sm: 10px;
+  --nav-hover-bg: #0e1a2b;
+  --nav-hover-text: #f4f8ff;
+  --nav-hover-shadow: rgba(8, 26, 50, 0.2);
   --speed: 220ms ease;
 }
 
@@ -38,6 +41,9 @@ body[data-theme="dark"] {
   --glow-2: rgba(53, 217, 255, 0.2);
   --topbar-bg: rgba(6, 15, 31, 0.84);
   --shadow: 0 20px 45px rgba(2, 10, 24, 0.55);
+  --nav-hover-bg: #f4f8ff;
+  --nav-hover-text: #0e1a2b;
+  --nav-hover-shadow: rgba(235, 244, 255, 0.22);
 }
 
 * {
@@ -61,6 +67,10 @@ body {
   color: var(--text);
   line-height: 1.62;
   transition: background-color var(--speed), color var(--speed);
+}
+
+body.nav-open {
+  overflow: hidden;
 }
 
 a {
@@ -101,7 +111,7 @@ main {
 .topbar {
   position: sticky;
   top: 0;
-  z-index: 20;
+  z-index: 40;
   backdrop-filter: blur(14px);
   background: var(--topbar-bg);
   border-bottom: 1px solid var(--border);
@@ -112,6 +122,13 @@ main {
   display: flex;
   align-items: center;
   gap: 1.1rem;
+}
+
+.nav-drawer {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .brand {
@@ -129,7 +146,6 @@ main {
 }
 
 .main-nav {
-  margin-left: auto;
   display: flex;
   align-items: center;
   gap: 0.32rem;
@@ -140,19 +156,106 @@ main {
   padding: 0.45rem 0.85rem;
   border-radius: 999px;
   color: var(--text-soft);
-  transition: color var(--speed), background-color var(--speed);
+  transition: color var(--speed), background-color var(--speed), box-shadow var(--speed), transform var(--speed);
 }
 
 .main-nav a:hover,
+.main-nav a:focus-visible,
 .main-nav a.active {
-  color: var(--text);
-  background: color-mix(in oklab, var(--accent-electric) 13%, transparent);
+  color: var(--nav-hover-text);
+  background: var(--nav-hover-bg);
+  box-shadow: 0 12px 24px var(--nav-hover-shadow);
+}
+
+.main-nav a:hover,
+.main-nav a:focus-visible {
+  transform: translateY(-1px);
 }
 
 .topbar-actions {
   display: flex;
   align-items: center;
   gap: 0.55rem;
+}
+
+.nav-toggle {
+  display: none;
+  width: 2.9rem;
+  height: 2.9rem;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  position: relative;
+  flex-shrink: 0;
+  transition: border-color var(--speed), background-color var(--speed), transform var(--speed), box-shadow var(--speed);
+}
+
+.nav-toggle:hover {
+  border-color: color-mix(in oklab, var(--accent-cyan) 55%, var(--border));
+  transform: translateY(-1px);
+}
+
+.nav-toggle span {
+  position: absolute;
+  left: 50%;
+  width: 1.2rem;
+  height: 2px;
+  border-radius: 999px;
+  background: currentColor;
+  transition: transform var(--speed), opacity var(--speed), top var(--speed);
+}
+
+.nav-toggle span:nth-child(1) {
+  top: 0.95rem;
+  transform: translateX(-50%);
+}
+
+.nav-toggle span:nth-child(2) {
+  top: 1.38rem;
+  transform: translateX(-50%);
+}
+
+.nav-toggle span:nth-child(3) {
+  top: 1.81rem;
+  transform: translateX(-50%);
+}
+
+body.nav-open .nav-toggle {
+  box-shadow: 0 12px 24px color-mix(in oklab, var(--accent-electric) 16%, transparent);
+}
+
+body.nav-open .nav-toggle span:nth-child(1) {
+  top: 1.38rem;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+body.nav-open .nav-toggle span:nth-child(2) {
+  opacity: 0;
+}
+
+body.nav-open .nav-toggle span:nth-child(3) {
+  top: 1.38rem;
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+.nav-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 24;
+  border: 0;
+  padding: 0;
+  background: rgba(4, 10, 18, 0.55);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--speed);
+}
+
+body.nav-open .nav-overlay {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 .btn {
@@ -772,26 +875,69 @@ main {
   }
 
   .topbar-inner {
-    flex-wrap: wrap;
-    align-items: flex-start;
+    min-height: 82px;
     padding-block: 0.8rem;
   }
 
-  .main-nav {
-    order: 3;
+  .nav-toggle {
+    display: inline-grid;
+    place-items: center;
+    margin-left: auto;
+    z-index: 32;
+  }
+
+  .nav-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 31;
+    width: min(320px, 86vw);
+    height: 100dvh;
     margin-left: 0;
+    padding: 5.5rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
+    gap: 1rem;
+    background:
+      linear-gradient(180deg, color-mix(in oklab, var(--surface) 92%, var(--bg)), color-mix(in oklab, var(--surface-soft) 95%, var(--bg-alt)));
+    border-right: 1px solid var(--border);
+    box-shadow: 0 22px 50px rgba(3, 16, 38, 0.25);
+    transform: translateX(calc(-100% - 18px));
+    transition: transform 260ms ease;
+  }
+
+  body.nav-open .nav-drawer {
+    transform: translateX(0);
+  }
+
+  .main-nav {
     width: 100%;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    overflow-x: visible;
-    row-gap: 0.45rem;
-    padding-bottom: 0.12rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.45rem;
+  }
+
+  .main-nav a {
+    padding: 0.86rem 0.95rem;
+    border-radius: 14px;
+    font-size: 0.96rem;
   }
 
   .topbar-actions {
-    margin-left: auto;
-    flex-wrap: wrap;
-    justify-content: flex-end;
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.7rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .topbar-actions .btn.small,
+  .topbar-actions .theme-toggle {
+    width: 100%;
+    text-align: center;
   }
 
   .section-heading-row {
@@ -824,23 +970,6 @@ main {
     gap: 0.8rem;
   }
 
-  .main-nav a {
-    padding: 0.42rem 0.72rem;
-    font-size: 0.9rem;
-  }
-
-  .topbar-actions {
-    margin-left: auto;
-    width: 100%;
-    justify-content: flex-end;
-  }
-
-  .topbar-actions .btn.small,
-  .topbar-actions .theme-toggle {
-    flex: 1 1 180px;
-    text-align: center;
-  }
-
   .contact-item {
     align-items: flex-start;
   }
@@ -865,6 +994,16 @@ main {
     font-size: 1.12rem;
   }
 
+  .nav-drawer {
+    width: min(290px, 90vw);
+    padding: 5.15rem 0.85rem 0.85rem;
+  }
+
+  .nav-toggle {
+    width: 2.75rem;
+    height: 2.75rem;
+  }
+
   .eyebrow {
     max-width: 100%;
     text-align: center;
@@ -880,34 +1019,12 @@ main {
     padding: 0.95rem;
   }
 
-  .main-nav {
-    gap: 0.4rem;
-  }
-
-  .main-nav a {
-    flex: 1 1 calc(50% - 0.4rem);
-    text-align: center;
-  }
-
-  .topbar-actions {
-    justify-content: stretch;
-  }
-
-  .topbar-actions .btn.small,
-  .topbar-actions .theme-toggle {
-    flex-basis: 100%;
-  }
-
   .project-links a {
     width: 100%;
   }
 
   .project-grid-fit .project-shot {
     padding: 0.7rem;
-  }
-
-  .project-shot-vaultwear {
-    min-height: 190px;
   }
 
   .skill-chip,
