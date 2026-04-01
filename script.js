@@ -7,6 +7,7 @@
   var navDrawer = null;
   var navToggle = null;
   var navOverlay = null;
+  var lastFocusedElement = null;
   var mobileNavQuery = window.matchMedia("(max-width: 1020px)");
 
   if (topbarInner && mainNav && topbarActions) {
@@ -31,17 +32,50 @@
     navOverlay.className = "nav-overlay";
     navOverlay.type = "button";
     navOverlay.setAttribute("aria-label", "Close navigation menu");
+    navOverlay.setAttribute("aria-hidden", "true");
     document.body.appendChild(navOverlay);
   }
 
+  function getDrawerFocusTarget() {
+    if (!navDrawer) {
+      return null;
+    }
+
+    return navDrawer.querySelector("a, button, [href], input, select, textarea, [tabindex]:not([tabindex='-1'])");
+  }
+
   function setNavState(isOpen) {
-    if (!navToggle || !navOverlay) {
+    if (!navToggle || !navOverlay || !navDrawer) {
       return;
     }
 
-    body.classList.toggle("nav-open", isOpen);
-    navToggle.setAttribute("aria-expanded", String(isOpen));
-    navToggle.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
+    var mobileView = mobileNavQuery.matches;
+    var shouldOpen = mobileView && isOpen;
+
+    body.classList.toggle("nav-open", shouldOpen);
+    navToggle.setAttribute("aria-expanded", String(shouldOpen));
+    navToggle.setAttribute("aria-label", shouldOpen ? "Close navigation menu" : "Open navigation menu");
+    navDrawer.setAttribute("aria-hidden", String(mobileView && !shouldOpen));
+    navOverlay.setAttribute("aria-hidden", String(!shouldOpen));
+
+    if (mobileView && !shouldOpen) {
+      navDrawer.setAttribute("inert", "");
+    } else {
+      navDrawer.removeAttribute("inert");
+    }
+
+    if (shouldOpen) {
+      lastFocusedElement = document.activeElement;
+      window.setTimeout(function () {
+        var focusTarget = getDrawerFocusTarget();
+        if (focusTarget) {
+          focusTarget.focus();
+        }
+      }, 40);
+    } else if (lastFocusedElement && typeof lastFocusedElement.focus === "function" && document.contains(lastFocusedElement)) {
+      lastFocusedElement.focus();
+      lastFocusedElement = null;
+    }
   }
 
   function syncNavForViewport() {
