@@ -88,7 +88,6 @@ body{
     align-items: center;
     justify-content: space-between;
     gap: 20px;
-    flex-wrap: wrap;
     padding: 20px 80px;
     background: #e3e6f3;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.06);
@@ -148,6 +147,9 @@ body{
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
 }
 
 #hero h4{
@@ -156,6 +158,25 @@ body{
 
 #hero h1{
     color: #088178;
+}
+
+#hero h4,
+#hero h2,
+#hero h1,
+#hero p,
+#hero button{
+    position: relative;
+    z-index: 1;
+}
+
+#hero h2,
+#hero h1,
+#hero p{
+    max-width: 16ch;
+}
+
+#hero p{
+    max-width: 28rem;
 }
 
 #hero button{
@@ -553,6 +574,11 @@ footer .follow i:hover{
 
     #header{
         padding: 18px 40px;
+        gap: 16px;
+    }
+
+    #navbar li{
+        padding: 0 14px;
     }
 
     #hero{
@@ -576,7 +602,7 @@ footer .follow i:hover{
     }
 
     #newsletter .form{
-        width: 55%;
+        width: min(100%, 520px);
     }
 }
 
@@ -597,21 +623,69 @@ footer .follow i:hover{
 
     #header{
         padding: 16px 20px;
-        justify-content: center;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
     }
 
     #navbar {
-        justify-content: center;
+        width: 100%;
+        justify-content: flex-start;
+        flex-wrap: nowrap;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 4px;
+        scrollbar-width: thin;
     }
 
     #navbar li {
-        padding: 10px 12px;
+        padding: 0;
+        flex: 0 0 auto;
+    }
+
+    #navbar li a{
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 11px 16px;
+        font-size: 14px;
+        border: 1px solid #cfd6e7;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.82);
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.06);
+        white-space: nowrap;
+    }
+
+    #navbar li a.active::after,
+    #navbar li a:hover::after {
+        display: none;
+    }
+
+    #navbar li a:hover,
+    #navbar li a.active{
+        color: #fff;
+        background: #088178;
+        border-color: #088178;
     }
 
     #hero{
         min-height: 60vh;
         padding: 56px 20px;
-        background-position: top 20% right 35%;
+        background-position: top 20% right 32%;
+    }
+
+    #hero::before{
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.82) 46%, rgba(255, 255, 255, 0.1) 100%);
+        z-index: 0;
+    }
+
+    #hero h2,
+    #hero h1,
+    #hero p{
+        max-width: min(100%, 24rem);
     }
 
     #hero button{
@@ -627,12 +701,19 @@ footer .follow i:hover{
     #feature .fe-box{
         flex: 1 1 calc(50% - 10px);
         max-width: none;
+        width: auto;
+        margin: 0;
     }
 
     #banner{
         height: auto;
         min-height: 220px;
         padding: 32px 20px;
+    }
+
+    #banner h2{
+        font-size: 30px;
+        line-height: 38px;
     }
 
     #sm-banner .banner-box,
@@ -645,6 +726,7 @@ footer .follow i:hover{
         flex-direction: column;
         align-items: flex-start;
         text-align: left;
+        gap: 18px;
     }
 
     #newsletter .form {
@@ -653,7 +735,7 @@ footer .follow i:hover{
 
     footer .col,
     footer .col-install{
-        flex: 1 1 100%;
+        flex: 1 1 calc(50% - 20px);
         margin: 0;
     }
 
@@ -698,12 +780,36 @@ footer .follow i:hover{
     #hero{
         min-height: 56vh;
         background-position: top 20% right 45%;
+        padding: 44px 14px;
+    }
+
+    #hero::before{
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.97) 0%, rgba(255, 255, 255, 0.92) 55%, rgba(255, 255, 255, 0.14) 100%);
+    }
+
+    #hero h2,
+    #hero h1,
+    #hero p{
+        max-width: 100%;
     }
 
     #feature .fe-box,
     #product1 .pro{
         width: 100%;
         flex-basis: 100%;
+    }
+
+    #hero button{
+        background-image: none;
+        background-color: #fff;
+        border: 1px solid #088178;
+        border-radius: 999px;
+        padding: 14px 28px;
+        box-shadow: 0 10px 20px rgba(8, 129, 120, 0.12);
+    }
+
+    #banner3{
+        padding: 0 20px;
     }
 
     #sm-banner .banner-box,
@@ -714,16 +820,49 @@ footer .follow i:hover{
 
     #newsletter .form{
         flex-direction: column;
+        gap: 10px;
     }
 
     #newsletter input,
     #newsletter button{
         width: 100%;
-        border-radius: 4px;
+        border-radius: 8px;
     }
 
     #newsletter button{
-        margin-top: 10px;
+        margin-top: 0;
+    }
+
+    footer .col,
+    footer .col-install{
+        flex-basis: 100%;
+    }
+}
+
+@media (max-width: 400px) {
+    .section-p1{
+        padding: 24px 14px;
+    }
+
+    #header{
+        padding: 14px;
+    }
+
+    #navbar{
+        gap: 8px;
+    }
+
+    #navbar li a{
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+
+    #hero{
+        background-position: top 20% right 52%;
+    }
+
+    #banner3{
+        padding: 0 14px;
     }
 }
 
