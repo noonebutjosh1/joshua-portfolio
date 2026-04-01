@@ -34,6 +34,10 @@ Project Three – Noirline
 
 Project Four - Car Website
 
+Project Five - Vaultwear
+
+Project Six - Aurelia Travel Co.
+
 Contact
 
 For collaboration or professional inquiries:
