@@ -1,0 +1,103 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About | Aurelia Travel Co.</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="page">
+        <header class="site-header">
+            <div class="logo">
+                <span class="logo-mark">A</span>
+                <div>
+                    <p class="logo-title">Aurelia Travel Co.</p>
+                    <p class="logo-subtitle">Boutique travel agency</p>
+                </div>
+            </div>
+            <nav class="site-nav">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'about' %}">About</a>
+                <a href="{% url 'register' %}">Registration</a>
+            </nav>
+            <a class="btn small" href="{% url 'register' %}">Start planning</a>
+        </header>
+
+        <main class="site-main">
+            <section class="hero slim">
+                <div class="hero-copy">
+                    <span class="pill">About us</span>
+                    <h1>We design travel that feels curated, calm, and full of meaning.</h1>
+                    <p>
+                        From our studio in Lagos, we craft boutique journeys across Africa, Europe, and Asia for travelers who
+                        value atmosphere, detail, and time to linger.
+                    </p>
+                </div>
+                <div class="hero-card">
+                    <p class="card-title">Milestones</p>
+                    <div class="milestones">
+                        {% for milestone in milestones %}
+                        <div class="milestone">
+                            <span class="milestone-year">{{ milestone.year }}</span>
+                            <p>{{ milestone.event }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+
+            <section class="section">
+                <div class="section-heading">
+                    <span class="eyebrow">Our approach</span>
+                    <h2>Thoughtful planning with a human touch.</h2>
+                    <p>Every trip is built around the people, flavors, and textures that make a place unforgettable.</p>
+                </div>
+                <div class="card-grid">
+                    {% for principle in principles %}
+                    <div class="card">
+                        <h3>{{ principle.title }}</h3>
+                        <p>{{ principle.detail }}</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </section>
+
+            <section class="section muted">
+                <div class="section-heading">
+                    <span class="eyebrow">The experience</span>
+                    <h2>What it feels like to travel with Aurelia.</h2>
+                    <p>We plan with intention so you can travel with ease.</p>
+                </div>
+                <div class="experience">
+                    <div>
+                        <h3>Curated stays</h3>
+                        <p>Design-led hotels, heritage houses, and villas chosen for warmth and character.</p>
+                    </div>
+                    <div>
+                        <h3>Immersive moments</h3>
+                        <p>Art studios, chef-hosted dinners, and local guides who open doors gracefully.</p>
+                    </div>
+                    <div>
+                        <h3>Support throughout</h3>
+                        <p>We stay close while you travel, adjusting details as needed with calm precision.</p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div>
+                <p class="footer-title">Aurelia Travel Co.</p>
+                <p class="footer-subtitle">Design-led journeys for travelers who savor the details.</p>
+            </div>
+            <div class="footer-links">
+                <p>+234 803 555 0198</p>
+                <p>hello@aureliatravel.com</p>
+                <p>Victoria Island, Lagos</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

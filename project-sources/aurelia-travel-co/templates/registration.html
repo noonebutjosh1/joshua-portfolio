@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration | Aurelia Travel Co.</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    <div class="page">
+        <header class="site-header">
+            <div class="logo">
+                <span class="logo-mark">A</span>
+                <div>
+                    <p class="logo-title">Aurelia Travel Co.</p>
+                    <p class="logo-subtitle">Boutique travel agency</p>
+                </div>
+            </div>
+            <nav class="site-nav">
+                <a href="{% url 'home' %}">Home</a>
+                <a href="{% url 'about' %}">About</a>
+                <a href="{% url 'register' %}">Registration</a>
+            </nav>
+            <a class="btn small" href="{% url 'register' %}">Start planning</a>
+        </header>
+
+        <main class="site-main">
+            <section class="section">
+                <div class="section-heading">
+                    <span class="eyebrow">Registration</span>
+                    <h1>Let us start shaping your journey.</h1>
+                    <p>Share a few details and we will respond with a tailored proposal.</p>
+                </div>
+
+                {% if submitted %}
+                <div class="notice">
+                    <strong>Thank you{% if form_data.full_name %}, {{ form_data.full_name }}{% endif %}.</strong>
+                    We have received your request and will reach out within 48 hours.
+                </div>
+                {% endif %}
+
+                <form class="form-card" method="post" action="{% url 'register' %}">
+                    {% csrf_token %}
+                    <div class="form-grid">
+                        <label>
+                            Full name
+                            <input type="text" name="full_name" placeholder="Your full name" value="{{ form_data.full_name }}" required>
+                        </label>
+                        <label>
+                            Email address
+                            <input type="email" name="email" placeholder="you@email.com" value="{{ form_data.email }}" required>
+                        </label>
+                        <label>
+                            Phone number
+                            <input type="tel" name="phone" placeholder="+234" value="{{ form_data.phone }}">
+                        </label>
+                        <label>
+                            Preferred destination
+                            <input type="text" name="destination" placeholder="e.g., Santorini" value="{{ form_data.destination }}">
+                        </label>
+                        <label>
+                            Travel month
+                            <input type="month" name="travel_month" value="{{ form_data.travel_month }}">
+                        </label>
+                        <label>
+                            Number of travelers
+                            <input type="number" name="travelers" min="1" max="12" placeholder="2" value="{{ form_data.travelers }}">
+                        </label>
+                        <label>
+                            Estimated budget (USD)
+                            <select name="budget">
+                                <option value="" {% if not form_data.budget %}selected{% endif %}>Select a range</option>
+                                <option value="$2k-$4k" {% if form_data.budget == '$2k-$4k' %}selected{% endif %}>$2k - $4k</option>
+                                <option value="$4k-$8k" {% if form_data.budget == '$4k-$8k' %}selected{% endif %}>$4k - $8k</option>
+                                <option value="$8k-$15k" {% if form_data.budget == '$8k-$15k' %}selected{% endif %}>$8k - $15k</option>
+                                <option value="$15k+" {% if form_data.budget == '$15k+' %}selected{% endif %}>$15k+</option>
+                            </select>
+                        </label>
+                    </div>
+                    <label class="textarea">
+                        Notes or requests
+                        <textarea name="notes" rows="4" placeholder="Tell us about your preferred pace, interests, or must-see places.">{{ form_data.notes }}</textarea>
+                    </label>
+                    <div class="form-actions">
+                        <button class="btn primary" type="submit">Send request</button>
+                        <p class="form-helper">We only use your details to plan your trip.</p>
+                    </div>
+                </form>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div>
+                <p class="footer-title">Aurelia Travel Co.</p>
+                <p class="footer-subtitle">Design-led journeys for travelers who savor the details.</p>
+            </div>
+            <div class="footer-links">
+                <p>+234 803 555 0198</p>
+                <p>hello@aureliatravel.com</p>
+                <p>Victoria Island, Lagos</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
