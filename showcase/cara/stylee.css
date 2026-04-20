@@ -140,10 +140,6 @@ body.nav-open{
     display: none;
 }
 
-.nav-overlay[hidden]{
-    display: none;
-}
-
 #navbar {
     display: flex;
     align-items: center;
@@ -785,7 +781,7 @@ footer .copyright{
         gap: 16px;
         box-shadow: var(--cara-shadow-strong);
         transform: translateX(-100%);
-        transition: transform 0.28s ease;
+        transition: transform 0.3s ease, visibility 0s linear 0.3s;
         z-index: 1001;
         visibility: hidden;
         pointer-events: none;
@@ -795,6 +791,7 @@ footer .copyright{
         transform: translateX(0);
         visibility: visible;
         pointer-events: auto;
+        transition: transform 0.3s ease;
     }
 
     .nav-close{
@@ -819,6 +816,17 @@ footer .copyright{
         inset: 0;
         background: rgba(15, 23, 42, 0.48);
         z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 0.28s ease, visibility 0s linear 0.28s;
+    }
+
+    body.nav-open .nav-overlay{
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transition: opacity 0.28s ease;
     }
 
     #navbar {

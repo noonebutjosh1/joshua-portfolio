@@ -33,7 +33,7 @@
                 </ul>
             </nav>
         </section>
-        <div class="nav-overlay" hidden></div>
+        <div class="nav-overlay"></div>
 
         <section id="hero">
             <div class="hero-copy">
@@ -475,7 +475,6 @@
                 const setMenuState = (isOpen) => {
                     document.body.classList.toggle("nav-open", isOpen);
                     navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
-                    navOverlay.hidden = !isOpen;
                 };
 
                 const closeMenu = () => setMenuState(false);
