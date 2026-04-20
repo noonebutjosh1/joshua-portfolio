@@ -13,26 +13,36 @@
     <body>
 
         <section id="header">
-            <a href="#"><img src="logo.png" class="logo"></a>
+            <a href="#" class="brand-mark"><img src="logo.png" class="logo" alt="Cara"></a>
 
-            <div>
+            <button class="mobile-nav-toggle" type="button" aria-label="Open menu" aria-controls="navbar" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+            <nav class="nav-shell" aria-label="Primary navigation">
+                <button class="nav-close" type="button" aria-label="Close menu">&times;</button>
                 <ul id="navbar">
                     <li><a class="active" href="index.html">Home</a></li>
                     <li><a href="shop.html">Shop</a></li>
                     <li><a href="blog.html">Blog</a></li>
                     <li><a href="about.html">About</a></li>
                     <li><a href="contact.html">Contact</a></li>
-                    <li><a href="cart.html"><i class="far fa-shopping-bag"></i></a></li>
+                    <li><a href="cart.html"><i class="far fa-shopping-bag" aria-hidden="true"></i><span class="nav-link-label">Cart</span></a></li>
                 </ul>
-            </div>
+            </nav>
         </section>
+        <div class="nav-overlay" hidden></div>
 
         <section id="hero">
-            <h4>Trade-in-offer</h4>
-            <h2>Super value deals</h2>
-            <h1>On all products</h1>
-            <p>Save more with coupons & up to 70% off!</p>
-            <button>Shop Now</button>
+            <div class="hero-copy">
+                <h4>Trade-in-offer</h4>
+                <h2>Super value deals</h2>
+                <h1>On all products</h1>
+                <p>Save more with coupons & up to 70% off!</p>
+                <button>Shop Now</button>
+            </div>
         </section>
 
         <section id="feature" class="section-p1">
@@ -454,6 +464,61 @@
             <p>&copy; 2024, Tech2etc - Ecommerce Tutorial</p>
         </div>
        </footer>
-    </body>
-</html>
+        <script>
+            const navToggle = document.querySelector(".mobile-nav-toggle");
+            const navClose = document.querySelector(".nav-close");
+            const navOverlay = document.querySelector(".nav-overlay");
+            const navLinks = document.querySelectorAll("#navbar a");
+            const mobileQuery = window.matchMedia("(max-width: 860px)");
+
+            if (navToggle && navClose && navOverlay) {
+                const setMenuState = (isOpen) => {
+                    document.body.classList.toggle("nav-open", isOpen);
+                    navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+                    navOverlay.hidden = !isOpen;
+                };
+
+                const closeMenu = () => setMenuState(false);
+
+                navToggle.addEventListener("click", () => {
+                    const willOpen = !document.body.classList.contains("nav-open");
+                    setMenuState(willOpen);
+
+                    if (willOpen) {
+                        navClose.focus();
+                    }
+                });
+
+                navClose.addEventListener("click", closeMenu);
+                navOverlay.addEventListener("click", closeMenu);
+
+                navLinks.forEach((link) => {
+                    link.addEventListener("click", () => {
+                        if (mobileQuery.matches) {
+                            closeMenu();
+                        }
+                    });
+                });
+
+                document.addEventListener("keydown", (event) => {
+                    if (event.key === "Escape") {
+                        closeMenu();
+                    }
+                });
+
+                const handleBreakpointChange = (event) => {
+                    if (!event.matches) {
+                        closeMenu();
+                    }
+                };
+
+                if (typeof mobileQuery.addEventListener === "function") {
+                    mobileQuery.addEventListener("change", handleBreakpointChange);
+                } else if (typeof mobileQuery.addListener === "function") {
+                    mobileQuery.addListener(handleBreakpointChange);
+                }
+            }
+        </script>
+     </body>
+ </html>
 
