@@ -100,14 +100,14 @@
     }
   }
 
-  var savedTheme = localStorage.getItem("portfolio-theme");
+  var savedTheme = localStorage.getItem("portfolio-theme-v2");
   var initialTheme = savedTheme === "light" ? "light" : "dark";
   applyTheme(initialTheme);
 
   if (toggleButton) {
     toggleButton.addEventListener("click", function () {
       var nextTheme = body.getAttribute("data-theme") === "dark" ? "light" : "dark";
-      localStorage.setItem("portfolio-theme", nextTheme);
+      localStorage.setItem("portfolio-theme-v2", nextTheme);
       applyTheme(nextTheme);
     });
   }
