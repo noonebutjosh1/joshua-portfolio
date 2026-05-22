@@ -101,7 +101,7 @@
   }
 
   var savedTheme = localStorage.getItem("portfolio-theme");
-  var initialTheme = savedTheme === "dark" ? "dark" : "light";
+  var initialTheme = savedTheme === "light" ? "light" : "dark";
   applyTheme(initialTheme);
 
   if (toggleButton) {
